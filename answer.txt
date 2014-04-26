@@ -1,0 +1,42 @@
+
+1)
+puts("for‚ðŽg‚¤")
+
+
+
+for i in (0..5) do
+
+	puts("Hello World!")
+
+end
+
+
+
+puts("times‚ðŽg‚¤")
+
+
+
+5.times{
+	puts("Hello World!")	
+}
+
+2)
+for i in (1..9) do
+    (1..9).each do|num|
+       printf("%02d ",i*num )
+    end
+	print("\n")
+end
+
+3)
+for i in 1..100 do
+	if (i % 15) == 0 then
+		puts("FizzBuzz")
+	elsif (i % 5) == 0 then
+		puts("Buzz")
+	elsif (i % 3) == 0 then
+		puts("Fizz")
+	else
+		puts(i)
+	end
+end

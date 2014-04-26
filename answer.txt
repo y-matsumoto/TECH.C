@@ -1,0 +1,38 @@
+1-1.
+
+for i in [1,2,3,4,5]
+	puts ("Hello World!")
+end
+
+1-2.
+
+5.times do
+        puts("Hello World")
+end
+
+2.
+
+array = [1,2,3,4,5,6,7,8,9]
+for i in array 
+    for j in array 
+        print i*j
+    end
+    puts()
+end
+
+3.
+
+for i in 1..100
+
+     if i%15 == 0 then
+         puts ("FizzBuzz")
+    elsif i%5==0 then
+         puts ("Buzz")
+     elsif i%3==0 then
+         puts("Fizz")
+     else
+         puts(i)
+     
+     end
+     
+end

@@ -6,8 +6,9 @@
 	
 
 (2)  
-	5.times do 
-		print"Hello World!\n";
+	5.times{ 
+		print("Hello World!\n")
+	}
 
 
 2.

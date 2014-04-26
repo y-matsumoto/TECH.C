@@ -1,0 +1,40 @@
+(1)
+forï∂ÅF
+for i in 0..4
+	puts "Hello World!" 
+end
+	
+times:
+5.times {puts "Hello World!"}
+
+(2)
+forï∂:
+for i in 1..9
+	for j in 1..9
+		print sprintf("%02d",i*j)
+		print " "
+	end
+	puts ""
+end	
+
+each:
+(1..9).each {|i|
+    (1..9).each{|j|
+        print sprintf("%02d",i*j)
+        print " "
+    }
+     puts ""   
+}
+
+
+(3)
+for i in 1..100
+    if i%3 == 0 && i%5 == 0
+        puts "FizzBuzz"
+    elsif i%3 == 0
+        puts "Fizz"
+    elsif i%5 == 0
+        puts "Buzz"
+    else puts i
+    end
+end

@@ -1,0 +1,8 @@
+for s in 1..5
+	print "Hallo World!\n"
+end
+
+5.times{
+	print"Hallo World!\n"
+}
+

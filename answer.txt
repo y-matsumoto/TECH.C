@@ -1,0 +1,42 @@
+Answer :::
+1::
+	1: puts "Hello World"
+
+	2: for i in 0..5
+   		puts "Hello World"
+  	   end
+	3: 5.times do
+  		puts "Hello World"
+	   end
+		puts "Bye World"
+
+2::
+
+	1:for row_num in 1..9
+   		line = ""
+   	  for col_num in 1..9
+           line += "#{row_num * col_num}\t"
+          end
+   
+          puts line
+          end
+	
+	2:(1..9).each do |row_num|
+           line = ""
+          (1..9).each{ |col_num| line += "#{row_num * col_num}\t"}
+   
+          puts line
+          end
+3::
+
+	1.upto(100) do |i|
+      if i % 5 == 0 and i % 3 == 0
+        puts "FizzBuzz"
+      elsif i % 5 == 0
+        puts "Buzz"
+      elsif i % 3 == 0
+        puts "Fizz"
+      else
+        puts i
+      end
+    end

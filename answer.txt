@@ -22,12 +22,13 @@ end
 
 #ans3
 for fz in 1..100
-    i += 1
-        if i % 3 == 0 then
-            print "Fizz\n"
-        elsif i % 5 == 0 then
-            print "Buzz\n"
-        else
-            print "FizzBuzz\n"
-    end
+    if fz%3==0 && fz%5==0  then
+        print"Fizz Buzz\n"
+    elsif fz%3==0 then
+        print "Fizz\n"
+    elsif fz%5==0 then
+        print "Buzz\n"
+    else
+        print fz, "\n"
+end
 end

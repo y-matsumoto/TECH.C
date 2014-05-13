@@ -1,0 +1,15 @@
+def sosu(num)
+    tmp=0
+    for i in 2..num/2
+        if num%i==0 then
+            tmp+=1
+        end
+    end
+    if tmp<1 then
+        puts num
+    end
+end
+
+for j in 2..100
+    sosu(j)
+end

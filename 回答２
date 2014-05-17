@@ -1,0 +1,135 @@
+Enter file contents here1.Hello World![改行]を5回表示させるプログラムを設問の条件で完成させよ
+
+1)for文を使用する事
+
+for i in ['Hello World!','Hello World!','Hello World!','Hello World!','Hello World!']
+ puts i
+end
+
+2)timesを使用する事
+
+5.times do
+  print "Hello World!\n"
+end
+
+
+
+2.下記結果となる九九表プログラムを設問の条件で完成させよ
+
+
+1)for文を使用する事
+
+for i in 1..9
+  for j in 1..9
+    print i*j, " "
+  end
+  print "\n"
+end
+
+2)eachを使用する事
+
+9.times do |i|
+	
+	print i+1
+	
+	print " "
+end
+puts "\n"
+
+(1..9).each do |i|
+	
+	print "#{i*2}"
+	
+	print " "
+end
+puts "\n"
+
+(1..9).each do |i|
+
+	print "#{i*3}"
+
+	print " "
+
+end
+
+puts "\n"
+
+(1..9).each do |i|
+
+	print "#{i*4}"
+
+	print " "
+
+end
+
+puts "\n"
+
+(1..9).each do |i|
+
+	print "#{i*5}"
+
+	print " "
+
+end
+
+puts "\n"
+
+(1..9).each do |i|
+
+	print "#{i*6}"
+
+	print " "
+
+end
+
+puts "\n"
+
+(1..9).each do |i|
+
+	print "#{i*7}"
+
+	print " "
+
+end
+
+puts "\n"
+
+(1..9).each do |i|
+
+	print "#{i*8}"
+
+	print " "
+
+end
+
+puts "\n"
+
+(1..9).each do |i|
+
+	print "#{i*9}"
+
+	print " "
+
+end
+
+puts ""
+
+3.下記の条件に従いFizzBuzzを完成させよ
+
+
+1~100の数値で3で割り切れる場合は「Fizz」と出力、
+5で割り切れる場合は「Buzz」と出力、両者で割り切れる場合は「Fizz Buzz」と
+出力すること。それ以外の数値はそのまま出力で良い
+
+
+for num in i..100 do
+  if num % 3 == 0
+	puts "Fizz"
+  elsif num % 5 == 0
+	puts "Buzz"
+  elsif num % 15 == 0
+	puts "FizzBuzz"
+  else
+	puts num
+  end
+end

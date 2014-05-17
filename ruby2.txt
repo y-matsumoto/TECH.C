@@ -1,0 +1,35 @@
+
+–â‘è‚PF
+
+def prime(n)
+  num = 2
+  n.times do 
+    if((n%num) == 0 && (n != num))
+     break
+    end
+    num = num + 1
+  end
+end
+
+for i in 2..100
+if prime(i) then
+    puts prime(i)
+end
+end
+
+
+–â‘è‚Q
+
+def isLeapYear(year) 
+  return false if year < 4
+
+  year % 400 == 0 || (year % 100 != 0 && year % 4 == 0) 
+end
+
+def countLeapYear(fromYear, toYear) 
+  (fromYear..toYear).count{|i| isLeapYear i}
+end
+
+puts countLeapYear 0, 2014 
+
+

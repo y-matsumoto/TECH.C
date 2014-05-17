@@ -1,3 +1,4 @@
+﻿陳文
 ﻿1〜100までの間で素数を表示させよ
 
 def eratosthenes_sieve(limit, &block)

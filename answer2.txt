@@ -1,12 +1,15 @@
-def mun(b)
+def generate_prime_numbers(max)
+  (2..max).inject([]) do |list, n|
+    append_if_prime(list, n)
+  end
+end
 
-+     (2..Math.sqrt(a)).each do |b|
-+          if a % b == 0
-+              return false
-+          end
-+      end
-+      return true
-+  end  
+def append_if_prime(known_primes, n)
+  known_primes.each {|prime| return known_primes if n % prime == 0 } 
+  known_primes << n
+end
+
+puts generate_prime_numbers(100)
 
 
    def abc()

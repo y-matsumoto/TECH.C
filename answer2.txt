@@ -1,3 +1,12 @@
+def mun(b)
+
++     (2..Math.sqrt(a)).each do |b|
++          if a % b == 0
++              return false
++          end
++      end
++      return true
++  end  
    def abc()
        for year in 0 .. 2014
         if year % 400 == 0 || (year % 100 != 0 && year % 4 == 0) then

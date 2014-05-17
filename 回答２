@@ -123,7 +123,7 @@ puts ""
 出力すること。それ以外の数値はそのまま出力で良い
 
 
-for num in i..100 do
+for num in 1..100 do
   if num % 3 == 0
 	puts "Fizz"
   elsif num % 5 == 0

@@ -1,17 +1,17 @@
 class Num
-   attr_accessor :number
-   
+
    def initialize(number)
         @number = number 
+        @@arr = Array.new(@number){Array.new(@number)}
    end
    
    def magic
-       arr = Array.new(@number){Array.new(@number)}
+       
        
         y = @number/2
         x = @number -1
         
-        arr[y][x] = 1
+        @@arr[y][x] = 1
         
         ytmp = y
         xtmp = x
@@ -22,8 +22,8 @@ class Num
     
             xtmp -= @number if xtmp == @number
             ytmp += @number if ytmp == -1
-            if arr[ytmp][xtmp] == nil
-                arr[ytmp][xtmp] = i
+            if @@arr[ytmp][xtmp] == nil
+                @@arr[ytmp][xtmp] = i
                 y = ytmp
                 x = xtmp
             else
@@ -31,11 +31,20 @@ class Num
                 x += @number if x == -1
                 ytmp = y
                 xtmp = x
-                arr[ytmp][xtmp] = i
+                @@arr[ytmp][xtmp] = i
             end
         end
-        
-        p *arr
+        return @@arr
+    end
+    
+    
+    def putsArray
+        for i in 0..@number-1
+            for j in 0..@number-1
+                print "[#{@@arr[i][j]}]"
+        end
+        puts
+        end
     end
     
 end
@@ -46,3 +55,4 @@ number = gets.to_i
 
 test = Num.new(number)
 test.magic
+test.putsArray

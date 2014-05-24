@@ -1,0 +1,48 @@
+class Num
+   attr_accessor :number
+   
+   def initialize(number)
+        @number = number 
+   end
+   
+   def magic
+       arr = Array.new(@number){Array.new(@number)}
+       
+        x = @number/2
+        y = @number -1
+        
+        arr[x][y] = 1
+        
+        xtmp = x
+        ytmp = y
+      
+        for i in 2..@number*@number
+            ytmp += 1
+            xtmp -= 1
+    
+            ytmp -= @number if ytmp == @number
+            xtmp += @number if xtmp == -1
+            if arr[xtmp][ytmp] == nil
+                arr[xtmp][ytmp] = i
+                x = xtmp
+                y = ytmp
+            else
+                y -= 1
+                y += @number if y == -1
+                xtmp = x
+                ytmp = y
+                arr[xtmp][ytmp] = i
+            end
+        end
+        
+        p *arr
+    end
+    
+end
+
+puts "please enter number"
+
+number = gets.to_i
+
+test = Num.new(number)
+test.magic

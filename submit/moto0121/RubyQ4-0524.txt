@@ -1,0 +1,17 @@
+array1 = Array.new(3)
+array2 = [1,2,3]
+puts 'name'
+
+for num in 0..2 do
+a = gets.to_i
+array1[num] = a
+end
+
+for num in 0..2 do
+if array1[num] == array2[num] then
+    printf("%d blow",num)
+end
+end
+
+
+

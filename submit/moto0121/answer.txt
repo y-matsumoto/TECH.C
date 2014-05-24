@@ -16,7 +16,7 @@ end
 print("\n")
 end
 
-2)num1 = 1..9
+2 a)num1 = 1..9
 num2 = 1..9
 
 num1.each{|a|

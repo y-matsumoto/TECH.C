@@ -1,0 +1,23 @@
+def generate_prime_numbers(max)
+  (2..max).inject([]) do |list, n|
+    append_if_prime(list, n)
+  end
+end
+
+def append_if_prime(known_primes, n)
+  known_primes.each {|prime| return known_primes if n % prime == 0 } 
+  known_primes << n
+end
+
+puts generate_prime_numbers(100)
+
+
+   def abc()
+       for year in 0 .. 2014
+        if year % 400 == 0 || (year % 100 != 0 && year % 4 == 0) then
+            puts year
+        end
+    end
+    end
+        
+abc

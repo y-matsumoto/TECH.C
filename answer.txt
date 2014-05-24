@@ -1,0 +1,5 @@
+for times in ["hello world!\n"]
+
+print times*5
+
+end

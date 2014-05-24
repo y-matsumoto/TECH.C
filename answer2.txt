@@ -1,0 +1,31 @@
+(1)
+def sosu(num)
+    tmp=0
+    for i in 2..num/2
+        if num%i==0 then
+            tmp+=1
+        end
+    end
+    if tmp<1 then
+        puts num
+    end
+end
+
+for j in 2..100
+    sosu(j)
+end
+
+(2)
+def year(num)
+    if(num%4==0&&num%100!=0||num%400==0) then
+        return 1
+    else return 0
+    end
+end
+
+for i in 1..2014
+    t=year(i)
+    if(t==1) then
+    puts i
+    end
+end

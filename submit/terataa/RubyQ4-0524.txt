@@ -1,0 +1,88 @@
+zero = 1
+
+begin
+
+    
+    
+    ran = rand(999) + 1
+    
+    a = [0, 0, 0]
+    b = [0, 0, 0]
+    
+    kaisu = 1
+    
+    #ran3桁目
+    b[0] = (ran % 10); ran /= 10;
+    #ran2桁目
+    b[1] = (ran % 10); ran /= 10;
+    #ran1桁目
+zero = 1
+
+begin
+
+    
+    
+    ran = rand(999) + 1
+    
+    a = [0, 0, 0]
+    b = [0, 0, 0]
+    
+    kaisu = 1
+    
+    #ran3桁目
+    b[0] = (ran % 10); ran /= 10;
+    #ran2桁目
+    b[1] = (ran % 10); ran /= 10;
+    #ran1桁目
+    b[2] = (ran % 10); ran /= 10;
+    
+    while a[0] != b[0] ||a[1] != b[1] ||a[2] != b[2] do
+        
+        kaisu += 1
+        
+        print "A three-digit number"
+        value = gets.to_i
+        
+        if value == 0 then
+            puts("aaa")
+            next
+        end
+        
+        #value3桁目
+        a[0] = (value % 10); value /= 10;
+        #value2桁目
+        a[1] = (value % 10); value /= 10;
+        #value1桁目
+        a[2] = (value % 10); value /= 10;
+        
+        if a[2] == b[2] then
+            print("Blow ")
+        elsif a[2] == b[1] || a[2] == b[0] then
+            print("Hit ")
+        else
+            print("Miss ")
+        end
+        
+        if a[1] == b[1] then
+            print("Blow ")
+        elsif a[1] == b[2] || a[1] == b[0] then
+            print("Hit ")
+        else
+            print("Miss ")
+        end
+        
+        if a[0] == b[0] then
+            print("Blow\n")
+        elsif a[0] == b[1] || a[0] == b[1] then
+            print("Hit\n")
+        else
+            print("Miss\n")
+        end
+        
+    end
+    
+    print kaisu
+    print "th\n"
+    print("Correct answer\n")
+    
+end while zero == 0

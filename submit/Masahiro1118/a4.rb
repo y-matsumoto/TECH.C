@@ -89,7 +89,3 @@ while(gameFlag)
 		puts("**入力エラーです**")
 	end
 end
-
-def init
-	card = Card.new
-end

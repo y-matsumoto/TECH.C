@@ -1,5 +1,5 @@
 class HitAndBlow
-  
+  MAX_VALUE-1
   def initialize(ans_number = (rand(989)+10))
     @count = 0
     @ans_number = ans_number
@@ -13,7 +13,7 @@ class HitAndBlow
   
   def hit_cnt(numbers)
     cont = 0
-    for i in 0..3-1
+    for i in 0..MAX_VALUE-1
       cont += 1 if numbers[i] == @ans_number[i]
     end
     cont

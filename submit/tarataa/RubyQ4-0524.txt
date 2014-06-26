@@ -1,0 +1,81 @@
+zero = 1
+count = 0
+
+begin
+
+    
+    
+    ran = rand(999) + 1
+    
+    a = [0, 0, 0]
+    b = [0, 0, 0]
+    
+    kaisu = 1
+    
+    #ran3桁目
+    b[0] = (ran % 10); ran /= 10;
+    #ran2桁目
+    b[1] = (ran % 10); ran /= 10;
+    #ran1桁目
+    b[2] = (ran % 10); ran /= 10;
+    
+    while a[0] != b[0] ||a[1] != b[1] ||a[2] != b[2] do
+        
+        kaisu += 1
+        
+        begin
+            print " A three-digit number "
+            value = gets.to_i
+            
+            if value.to_s.length != 3 && value >= 000 && value <= 999 then
+                print("Please enter correctly\n")
+            end
+            
+            if value == 0 then
+                next
+            end
+        end while value.to_s.length != 3 && value >= 000 && value <= 999
+        
+        #value3桁目
+        a[0] = (value % 10); value /= 10;
+        #value2桁目
+        a[1] = (value % 10); value /= 10;
+        #value1桁目
+        a[2] = (value % 10); value /= 10;
+        
+        Hit  = 0
+        Blow = 0
+        
+        f1 = 1
+        f2 = 2
+        
+        for count in 0..2 do
+            
+            if count == 1 then
+                f1 = 0
+            elsif count == 2 then
+                f2 = 1
+            end
+            
+            if a[count] == b[count] then
+                Hit += 1
+                print("Blow ")
+            elsif a[count] == b[f1] || a[count] == b[f2] then
+                Blow += 1
+                print("Hit ")
+            end
+        end
+        
+        print ("Hit:")
+        print (Hit)
+        print (" Blow:")
+        print (Blow)
+    print ("\n")
+        
+    end
+    
+    print kaisu
+    print "th\n"
+    print("Correct answer\n")
+    
+end while zero == 0

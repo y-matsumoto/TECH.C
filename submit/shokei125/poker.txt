@@ -229,6 +229,7 @@ class Poker < Card
 
     i = tmpNum.uniq.length
 
+    #ここに数字やスイートを入れるとゲームの検証できる
     case i
     when 5
       if RstraigthCheck?(tmpNum) and flushCheck?(tmpSuit)
@@ -245,13 +246,13 @@ class Poker < Card
     when 4
       @@result = ONEPAIR
     when 3
-      if threeCheck?(ary) then
+      if threeCheck?(tmpNum) then
         @@result = THREECARD
       else
         @@result = TWOPAIR
       end
     when 2
-      if fourCheck?(ary) then
+      if fourCheck?(tmpNum) then
         @@result = FOURCARD
       else
         @@result = FULLHOUSE
@@ -271,10 +272,10 @@ class Poker < Card
 
   #同じ役の処理
   def drawDeal?(p,c)
-    player = numGet(p)
-    comer = numGet(c)
-    player.min = player.min == 1 ? 14 : player.min
-    comer.min = comer.min == 1 ? 14 : comer.min
+    player = numGet(p).sort
+    comer = numGet(c).sort
+    player[0] = player[0] == 1 ? 14 : player[0]
+    comer[0] = comer[0] == 1 ? 14 : comer[0]
     player.sort!
     comer.sort!
     player.max > comer.max ? true : false

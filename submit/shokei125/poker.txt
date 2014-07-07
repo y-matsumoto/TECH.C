@@ -1,4 +1,4 @@
-﻿class Card
+class Card
   #定数の定義
   ROYALFLUSH = 10
   STRAIGHTFLUSH = 9
@@ -273,11 +273,11 @@ class Poker < Card
   def drawDeal?(p,c)
     player = numGet(p)
     comer = numGet(c)
-    player[0] = player[0] == 1 ? 14 : player[0]
-    comer[0] = comer[0] == 1 ? 14 : comer[0]
+    player.min = player.min == 1 ? 14 : player.min
+    comer.min = comer.min == 1 ? 14 : comer.min
     player.sort!
     comer.sort!
-    player[4] > comer[4] ? true : false
+    player.max > comer.max ? true : false
   end
 
   #役の表示

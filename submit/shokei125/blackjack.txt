@@ -1,0 +1,259 @@
+class Card
+  #定数の定義
+  ROYALFLUSH = 10
+  STRAIGHTFLUSH = 9
+  FOURCARD = 8
+  FULLHOUSE = 7
+  FLUSH = 6
+  STRAIGHT = 5
+  THREECARD = 4
+  TWOPAIR = 3
+  ONEPAIR = 2
+  NOPAIR = 1
+
+  @@suit = ["NOPAIR","ONEPAIR","TWOPAIR",
+    "THREECARD","STRAIGHT","FLUSH","FULLHOUSE",
+    "FOURCARD","STRAIGHTFLUSH","ROYALFLUSH"
+  ]
+
+  attr_accessor :hand ,:cnt
+  @@cardBox =[]
+
+  def initialize(cnt)
+    @hand = []
+    @cnt = cnt#カードの数
+    #@flag = flag#playかcomの判別
+  end
+  
+  #cardBoxのゲット
+  def cardBoxGet
+    @@cardBox
+  end
+  #cardBoxのクリア
+  def cardBoxClear
+    @@cardBox.clear
+  end
+  
+  @@gameCnt = [0,0,0]
+  @@result = 0
+  @@pokerSuit = ['S','H','C','D']
+  @@pokerNum = (1..13).to_a
+
+  #カードの配布
+  def cardOut(cnt = @cnt)
+    i = 0
+    tmpHand = []
+
+    while i < cnt
+      cont = 2
+      tmpCard = @@pokerSuit.sample+@@pokerNum.sample.to_s
+
+      cont -= 1 if repeatCheck?(tmpCard,tmpHand)
+      cont -= 1 if repeatCheck?(tmpCard,@@cardBox)
+
+      if cont == 2
+        tmpHand.push(tmpCard)
+        @@cardBox.push(tmpCard)
+        i += 1
+      end
+    end
+
+    tmpHand.each do |i|
+      @hand.push(i)
+    end
+    @hand
+  end
+
+  #カードの数字をゲット
+  def numGet(ary)
+    tmp = []
+    ary.map do |i|
+      tmp.push(i.gsub(/[^0-9]/,"").to_i)
+    end
+    tmp
+  end
+
+  #カードのスートのゲット
+  def suitGet(ary)
+    tmp = []
+    ary.map do |i|
+      tmp.push(i.gsub(/[0-9]/,""))
+    end
+    tmp
+  end
+
+  #カードの表示
+  def cardPrint
+    num = numGet(@hand)
+    suit = suitGet(@hand)
+    tmp = []
+    #数字の変換
+    num.map! do |i|
+      case i
+      when 1
+        i = "A"
+      when 11
+        i = "J"
+      when 12
+        i = "Q"
+      when 13
+        i = "K"
+      else
+        i = i.to_s
+      end
+    end
+    #スートの変換
+    suit.map! do |i|
+      case i
+      when "S"
+        i = "♠"
+      when "H"
+        i = "♥"
+      when "C"
+        i = "♣"
+      when "D"
+        i = "♦"
+      end
+    end
+
+    num.length.times do |i|
+      tmp[i] = suit[i]+num[i]
+    end
+    #p @hand
+    tmp
+  end
+
+  #カードの削除
+  def cardDel(num)
+    cnt = 0
+    num.each do |i|
+      @hand.delete_at(i-1-cnt)
+      cnt += 1
+    end
+  end
+
+  #カードの追加
+  def cardPlus(num)
+    @cnt = num
+    cardOut(@cnt)
+  end
+
+  #重複のチェック
+  def repeatCheck?(str,ary)
+    true if ary.include?(str)
+  end
+
+end
+
+class BlackJack < Card
+  #点数の計算/Aは1として
+  def numDeal
+    tmpNum = numGet(@hand)#数字の取得
+    tmpAry = []
+    sum = 0
+    #tmpSuit = suitGet(ary)#スイートの取得
+    if tmpNum.min == 1 and tmpNum.max <= 13 and tmpNum.max >=10 and tmpNum.length == 2
+      sum = 21
+      return sum
+    end
+
+    #J,Q,Kの変換
+    tmpNum.each do |i|
+      i = 10 if i >= 11 and i <= 13
+      i = 11 if i == 1
+      sum += i
+    end
+    sum
+  end
+
+  def aceDeal
+    sum = numDeal
+    tmpNum = numGet(@hand)
+
+    #点数は２１より大きい場合
+    if sum >21
+      sum = 0
+      tmpNum.each do |i|
+        i = 10 if i >= 11 and i <= 13
+        sum += i
+      end
+    end
+    sum
+  end
+
+  #結果の処理
+  def resultDeal(play,com)
+    if play == com or (play > 21 and com >21)
+      @@gameCnt[2] += 1
+    elsif play > 21 and com <= 21
+      @@gameCnt[1] += 1
+    elsif play < com and com <= 21
+      @@gameCnt[1] += 1
+    elsif play > com and play <= 21
+      @@gameCnt[0] += 1
+    elsif play <= 21 and com > 21
+      @@gameCnt[0] += 1
+    end
+
+    p @@gameCnt
+
+  end
+
+end
+
+class Com < BlackJack
+  #comのカードは必ず１６以上の処理
+  def comDeal
+    while true
+      if numDeal < 16
+        @@cardBox -= @hand
+        @hand.clear
+        cardOut
+        next
+      else
+        break
+      end
+    end
+    numDeal
+  end
+end
+
+#メイン
+while true
+  com = Com.new(2)
+  com.cardOut
+  comer = com.comDeal#comのカード必ず１６以上の処理
+
+  play = BlackJack.new(2)
+  play.cardOut
+  p play.cardPrint
+  p com.cardPrint[0]
+  #ヒットかスタンバイか
+  while true
+    p "player:[#{play.aceDeal}]"
+    break if play.aceDeal >= 21 or play.hand.length > 5
+    #p play.hand.length
+    p 'hit?yes/1-no/0'
+    tmp = gets.to_i
+    break if tmp == 0
+    play.cardPlus(1)
+    p play.cardPrint
+    p com.cardPrint[0]
+  end
+  p player = play.aceDeal#playerの点数
+
+  p 'hit end'
+  p play.cardPrint
+  p com.cardPrint
+
+  result = play.resultDeal(player,comer)
+  p "you:[#{player}]  com:[#{comer}]"
+  play.cardBoxClear
+
+  #ゲームの続きの判断
+  p "continue?yes/1-no/0"
+  flag = gets.to_i
+  break if flag == 0
+end
+
+p "win:#{result[0]}-lose:#{result[1]}-draw:#{result[2]}"

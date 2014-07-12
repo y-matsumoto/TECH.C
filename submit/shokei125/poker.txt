@@ -1,0 +1,349 @@
+class Card
+  #定数の定義
+  ROYALFLUSH = 10
+  STRAIGHTFLUSH = 9
+  FOURCARD = 8
+  FULLHOUSE = 7
+  FLUSH = 6
+  STRAIGHT = 5
+  THREECARD = 4
+  TWOPAIR = 3
+  ONEPAIR = 2
+  NOPAIR = 1
+
+  @@suit = ["NOPAIR","ONEPAIR","TWOPAIR",
+    "THREECARD","STRAIGHT","FLUSH","FULLHOUSE",
+    "FOURCARD","STRAIGHTFLUSH","ROYALFLUSH"
+  ]
+
+  attr_accessor :hand ,:cnt
+
+  def initialize(cnt)
+    @hand = []
+    @cnt = cnt#カードの数
+    #@flag = flag#playかcomの判別
+  end
+
+  def cardBoxGet
+    @@cardBox
+  end
+
+  @@cardBox =[]
+  @@result = 0
+
+  @@pokerSuit = ['S','H','C','D']
+  @@pokerNum = (1..13).to_a
+
+  #カードの配布
+  def cardOut(cnt = @cnt)
+    i = 0
+    tmpHand = []
+
+    while i < cnt
+      cont = 2
+      tmpCard = @@pokerSuit.sample+@@pokerNum.sample.to_s
+
+      cont -= 1 if repeatCheck?(tmpCard,tmpHand)
+      cont -= 1 if repeatCheck?(tmpCard,@@cardBox)
+
+      if cont == 2
+        tmpHand.push(tmpCard)
+        @@cardBox.push(tmpCard)
+        i += 1
+      end
+    end
+
+    tmpHand.each do |i|
+      @hand.push(i)
+    end
+    @hand
+  end
+
+  #カードの数字をゲット
+  def numGet(ary)
+    tmp = []
+    ary.map do |i|
+      tmp.push(i.gsub(/[^0-9]/,"").to_i)
+    end
+    tmp
+  end
+
+  #カードのスートのゲット
+  def suitGet(ary)
+    tmp = []
+    ary.map do |i|
+      tmp.push(i.gsub(/[0-9]/,""))
+    end
+    tmp
+  end
+
+  #カードの表示
+  def cardPrint
+    num = numGet(@hand)
+    suit = suitGet(@hand)
+    tmp = []
+    #数字の変換
+    num.map! do |i|
+      case i
+      when 1
+        i = "A"
+      when 11
+        i = "J"
+      when 12
+        i = "Q"
+      when 13
+        i = "K"
+      else
+        i = i.to_s
+      end
+    end
+    #スートの変換
+    suit.map! do |i|
+      case i
+      when "S"
+        i = "♠"
+      when "H"
+        i = "♥"
+      when "C"
+        i = "♣"
+      when "D"
+        i = "♦"
+      end
+    end
+
+    num.length.times do |i|
+      tmp[i] = suit[i]+num[i]
+    end
+    #p @hand
+    p tmp
+  end
+
+  #カードの削除
+  def cardDel(num)
+    cnt = 0
+    num.each do |i|
+      @hand.delete_at(i-1-cnt)
+      cnt += 1
+    end
+  end
+
+  #カードの追加
+  def cardPlus(num)
+    @cnt = num
+    cardOut(@cnt)
+  end
+
+  #重複のチェック
+  def repeatCheck?(str,ary)
+    true if ary.include?(str)
+  end
+
+end
+
+#playとポーカーのサブクラス
+class Poker < Card
+  #  attr_accessor :changeNum
+  #  def initialize
+  #    @changeNum = []
+  #  end
+  #重複チェック
+  def reCheck?(ary,num)
+    #p ary,num
+    flag = 0
+    ary.each do |i|
+      if i == num
+        flag +=1
+        break
+      end
+    end
+    true if flag != 0
+  end
+
+  #チェンジ番号の取得
+  def cardChange
+    changeNum = []
+    while true
+      tmp = gets.to_i
+      break if tmp == 0
+      next if reCheck?(changeNum,tmp)
+      changeNum.push(tmp)
+      break if changeNum.length()  >= 5
+    end
+    changeNum
+  end
+
+  #ツーペアかスリーカードか
+  def threeCheck?(ary)
+    cnt = []
+
+    for i in 0..ary.length-1 do
+      tmp = 0
+      for j in 0..ary.length-1 do
+        tmp += 1 if ary[i] == ary[j] and i != j
+      end
+      cnt.push(tmp) if tmp != 0
+    end
+
+    #p cnt.length
+
+    true if cnt.length == 3
+  end
+
+  #フォーカードかフルハウスか
+  def fourCheck?(ary)
+    cnt = []
+    for i in 0..ary.length-1 do
+      tmp = 0
+      for j in 0..ary.length-1 do
+        tmp += 1 if ary[i] == ary[j] and i != j
+      end
+      cnt.push(tmp) if tmp != 0
+    end
+
+    true if cnt.length == 4
+  end
+
+  #フラッシュ処理
+  def flushCheck?(ary)
+    #p 'flush'
+    true if ary.uniq.length == 1
+  end
+
+  #ストレート処理
+  def RstraigthCheck?(ary)
+    #p 'royal'
+    ary[0] = ary[0] == 1 ? 14 : ary[0]
+    tmp = ary.sort
+    #p tmp
+    true if tmp.max - tmp.min <= 4
+  end
+
+  def straigthCheck?(ary)
+    true if ary.max - ary.min <= 4
+  end
+
+  #ペア処理
+  def numDeal(ary)
+    tmpNum = numGet(ary)#カードの数字
+    tmpSuit = suitGet(ary)#カードのスイート
+
+    i = tmpNum.uniq.length
+
+    #ここに数字やスイートを入れるとゲームの検証できる
+    case i
+    when 5
+      if RstraigthCheck?(tmpNum) and flushCheck?(tmpSuit)
+        @@result = ROYALFLUSH
+      elsif straigthCheck?(tmpNum) and flushCheck?(tmpSuit)
+        @@result = STRAIGHTFLUSH
+      elsif flushCheck?(tmpSuit)
+        @@result = FLUSH
+      elsif straigthCheck?(tmpNum) || RstraigthCheck?(tmpNum)
+        @@result = STRAIGHT
+      else
+        @@result = NOPAIR
+      end
+    when 4
+      @@result = ONEPAIR
+    when 3
+      if threeCheck?(tmpNum) then
+        @@result = THREECARD
+      else
+        @@result = TWOPAIR
+      end
+    when 2
+      if fourCheck?(tmpNum) then
+        @@result = FOURCARD
+      else
+        @@result = FULLHOUSE
+      end
+    end
+
+  end
+
+  #結果処理
+  def resultDeal?(play,com,player,comer)
+    if play == com
+      drawDeal?(player,comer)
+    else
+      play > com ? true : false
+    end
+  end
+
+  #同じ役の処理
+  def drawDeal?(p,c)
+    player = numGet(p).sort
+    comer = numGet(c).sort
+    player[0] = player[0] == 1 ? 14 : player[0]
+    comer[0] = comer[0] == 1 ? 14 : comer[0]
+    player.sort!
+    comer.sort!
+    player.max > comer.max ? true : false
+  end
+
+  #役の表示
+  def suitOut(num)
+    @@suit[num-1]
+  end
+end
+
+#comのサブクラス
+class Com < Poker
+  #ワンペア以上の処理
+  def comDeal
+    while true
+      cardOut
+      #p @hand
+      result = numDeal(@hand)
+      
+      break if numDeal(@hand) > 1
+      #p "tmp"
+      @@cardBox -= @hand
+      @hand.clear
+      next
+    end
+    @hand
+  end
+end
+
+play = Poker.new(5)
+play.cardOut
+
+#p "com"
+com = Com.new(5)
+com.comDeal
+
+play.cardPrint#play持ってるカード
+#com.cardPrint#com持ってるカード
+#p game.cardBoxGet#すでにあったカード
+
+#カードのチェンジ
+p 'チェンジしたいカードの番号は１から５まで/0で終了'
+change = play.cardChange#枚数の取得
+p 'end'
+
+#カードの削除後
+play.cardDel(change)
+
+#カードの追加
+play.cardPlus(change.length)
+
+play.cardPrint#play持ってるカード
+com.cardPrint#com持ってるカード
+
+player = play.hand
+comer = com.hand
+
+p "deal"
+
+playResult = play.numDeal(player)
+comResult = com.numDeal(comer)
+if play.resultDeal?(playResult,comResult,player,comer)
+  p "play:"+play.suitOut(playResult)
+  p "com:"+com.suitOut(comResult)
+  p "YOU WIN !!"
+else
+  p "play:"+play.suitOut(playResult)
+  p "com:"+com.suitOut(comResult)
+  p "YOU LOSE !!"
+end

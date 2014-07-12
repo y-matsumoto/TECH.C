@@ -9,7 +9,7 @@ end
 aa
 
 
-#2
+# 2
 require 'Date'
 
 class BB

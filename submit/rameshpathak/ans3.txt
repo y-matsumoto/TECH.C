@@ -1,0 +1,57 @@
+=begin 
+2   引数までの素数を表示します。 
+3   @param {int} num どこまで表示するか 
+4 =end 
+5 def primeNumber(num) 
+6 	prime_list = [2] 
+7 	x = 3 
+8 	while x < num 
+9 	  found = false 
+10 	  for y in prime_list 
+11 	    if y * y > x 
+12 	      found = true 
+13 	      break 
+14 	    end 
+15 	    break if x % y == 0 
+16 	  end 
+17 	  prime_list.push(x) if found 
+18 	  x += 2 
+19 	end 
+20 	print prime_list 
+21 end 
+22 
+ 
+23 
+ 
+24 #class Leap 
+25 =begin 
+26 	引数までの年数の閏年を表示します 
+27 	@param year {int} どの年まで表示するか 
+28 =end 
+29 	def leapYear(year) 
+30 		leapYearList = [] 
+31 		for i in 0..year do 
+32 			y = i 
+33 			if (y %= 4) == 0 then 
+34 				leapYearList.push(i) 
+35 			elsif (y %= 100) == 0 then 
+36 				leapYearList.push(i) 
+37 			elsif (y %= 400) == 0 then 
+38 				leapYearList.push(i) 
+39 			end 
+40 		end 
+41 		print leapYearList 
+42 	end 
+43 #end 
+44 
+ 
+45 
+ 
+46 #primeNumber(100) 
+47 leapYear(2014) 
+48 
+ 
+49 
+ 
+50 #tmp = Leap.new() 
+51 #tmp.leapYear 

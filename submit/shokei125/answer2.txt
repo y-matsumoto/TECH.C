@@ -1,0 +1,38 @@
+–â‚P
+def handan(num)
+    cont = 0
+    for i in 2..num
+        if num%i == 0 
+            cont += 1 
+    end
+    end
+    
+    if cont < 2 then return 1
+    else return 0
+    end
+end
+
+for num in 2..100
+    tmp = handan(num)
+    if tmp == 1 then puts num
+    end
+end
+
+
+
+
+
+
+–â‚Q
+def handan(year)
+    if(year%4==0&&year%100!=0||year%400==0) 
+        return 1
+    else return 0
+    end
+end
+
+for y in 0..2014
+    tmp = handan(y)
+    if(tmp == 1) then puts y
+    end
+end

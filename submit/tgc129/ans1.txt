@@ -1,0 +1,34 @@
+1
+1)for i in 1..5
+printf("hello world")
+end
+2)5.times{
+print("Hello world\n")
+}
+2
+1)for num1 in 1..9
+for num2 in 1..9
+printf(" %02d",num1 * num2)
+end
+print("\n")
+end
+2 a)num1 = 1..9
+num2 = 1..9
+num1.each{|a|
+num2.each{|b|
+printf(" %02d",a*b)
+}
+printf("\n")
+}
+3
+for num in 1..100
+if num % 15 == 0 then
+printf(" FizzBuzz")
+elsif num % 5 == 0 then
+printf(" Buzz")
+elsif num % 3 == 0 then
+printf(" Fizz")
+else
+printf(" %d",num)
+end
+end

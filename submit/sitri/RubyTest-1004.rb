@@ -1,0 +1,36 @@
+﻿#問1
+
+# 1
+a = (1..100).to_a
+#p a
+
+#2
+b = a.collect{|b| b*100}
+#p b
+
+#3
+c = a.select{|c| c%3==0}
+#p c
+
+#4
+d = a.reverse
+#p d
+
+#5
+e = a.inject(:+)
+#p e
+
+#6
+def sum_array(a1, a2)
+  a1.zip(a2).map{|a,b| a+b}
+end
+
+#p sum_array((1..100), (2..101))
+
+
+#問2
+#1
+str_a = "Ruby it is a test string of study for the array".split(' ')
+#p str_a
+
+#2

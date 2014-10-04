@@ -1,0 +1,174 @@
+問1.
+
+1.1〜100までの整数が昇順に並ぶ配列aを作成せよ
+
+a = []
+100.times { |i|
+  a << i + 1
+}
+p a
+
+
+2.[1]の配列の各要素を100倍した、新しい配列bを作成せよ
+
+a = (1..100).to_a
+b = []
+a.each do |i|
+  b << i * 100
+end
+p b
+
+3.[1]の配列の各要素から3の倍数のみ取得した、新しい配列cを作成せよ
+
+a = (1..100).to_a
+c = []
+a.each do |i|
+  c << i if i % 3 == 0
+end
+p c
+
+4.[1]の配列を逆順に並び替えせよ
+
+a = (1..100).to_a
+a.reverse!
+p a
+
+5.[1]の配列に含まれる整数の和を求めよ
+
+a = (1..100).to_a
+sum = 0
+a.each do |i|
+  sum += i
+end
+p sum
+
+6.数値からなる配列array1と配列array2のそれらのここの要素を足し合わせた結果を配列で返すsum_arrayメソッド
+　を作成せよ
+
+実行例）
+p sum_array([1,2,3],[4,5,6]) # 出力: [5,7,9]
+
+def sum_array(array1, array2)
+  result = []
+  array1.zip(array2) do |a, b|
+    result << a + b
+  end
+  result
+end
+p sum_array([1, 2, 3], [4, 6, 8])
+
+
+問2.
+
+1."Ruby it is a test string of study for the array"
+　という文字列の各単語を要素とする配列を作成せよ
+
+str = "Ruby it is a test string of study for the array"
+strArray = str.split(" ")
+p strArray
+
+2.[1]の配列をアルファベット順にソートせよ
+
+str = "Ruby it is a test string of study for the array"
+strArray = str.split
+p strArray.sort{|a,b|
+  a <=> b
+}
+
+3.[1]の配列に含まれる文字列を全て単語の先頭を大文字にせよ
+
+str1 = "Ruby is an object oriented programming language"
+words = str1.split
+
+str2 = String.new
+words.each{p |word|
+  str2 << word.capitalize + " "
+}
+
+
+問3.
+
+1.曜日を表す英語と日本語の対応を表すハッシュwdayを定義せよ
+
+実行例)
+p wday[:sunday] # 出力: "日曜日"
+
+wday = {"Sunday" => "日曜日",
+        "Monday" => "月曜日",
+        "Thuesday" => "火曜日",
+        "Wendsday" => "水曜日",
+        "Thursday" => "木曜日",
+        "Friday" => "金曜日",
+        "Satuday" => "土曜日"
+       }
+       
+
+       
+p wday[:Sunday] 
+
+2.[1]のデータ数の7を取得するコードを記載せよ
+
+wday = {"Sunday" => "日曜日",
+        "Monday" => "月曜日",
+        "Thuesday" => "火曜日",
+        "Wendsday" => "水曜日",
+        "Thursday" => "木曜日",
+        "Friday" => "金曜日",
+        "Satuday" => "土曜日"
+       }
+       
+p wday.keys.size
+
+
+3.eachメソッドを使用し[1]のハッシュから下記結果を取得せよ
+
+英語[sunday]は日本語で日曜日です。
+〜(一週間分)
+
+wday = {"Sunday" => "日曜日",
+        "Monday" => "月曜日",
+        "Thuesday" => "火曜日",
+        "Wendsday" => "水曜日",
+        "Thursday" => "木曜日",
+        "Friday" => "金曜日",
+        "Satuday" => "土曜日"
+       }
+       
+wday.each do |e|
+ary = e.to_a
+puts "英語「#{ary.first}」は日本語で#{ary.last}です。"
+end
+
+
+
+問4.
+
+1.1個のさいころを振って出た目を返すメソッドdiceを作成せよ
+
+def dice
+	return rand(6) + 1
+end
+
+ 
+p dice
+
+2.10個のさいころを振って出た目をの合計値を返すメソッドdice10を作成せよ
+
+def dice
+	return rand(6) + 1
+end
+
+def dice10
+	ret = 0
+	10.times do
+		ret += dice
+	end
+	ret
+end
+ 
+p dice10
+
+
+
+
+

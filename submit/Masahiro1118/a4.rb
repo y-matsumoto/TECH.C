@@ -1,9 +1,17 @@
 class Card
 
 	def initialize
-		# 当てるカードをセット
+		checkFlag = false
 		@cardList = Array.new(2)
-		@cardList = [[*0..9].sample,[*0..9].sample,[*0..9].sample]
+
+		# 当てるカードをセット、ただし数値のかぶりが無いようにする
+		while(!checkFlag)
+			@cardList = [[*0..9].sample,[*0..9].sample,[*0..9].sample]
+			# p @cardList
+			if @cardList.size == @cardList.uniq.size then
+				checkFlag = true
+			end
+		end
 		# p @cardList
 	end
 
@@ -18,6 +26,7 @@ class Card
 			num[i] = playerNum[i].to_i
 		end
 
+		print "あなたが選んだ数値 :"
 		p num
 
 		# num要素分だけループ
@@ -47,13 +56,13 @@ end
 
 card = nil
 gameFlag = true
+turn = 0
 
 puts("ゲームスタート！")
 card = Card.new
 
 while(gameFlag)
-	turn = 0
-
+	
 	puts ("数を入力してください(0=リセット)")
 	playerNum = gets.chomp
 
@@ -68,14 +77,15 @@ while(gameFlag)
 		end
 
 	elsif playerNum.to_s.length == 3 then
-		turn += 1
-		gameFlag = card.check_num(playerNum,turn)
+
+		if (playerNum[0].to_i == playerNum[1].to_i) && (playerNum[1].to_i == playerNum[2].to_i) then
+			puts("3つとも同じ数値はできません")
+		else
+			turn += 1
+			gameFlag = card.check_num(playerNum,turn)
+		end
 
 	else
 		puts("**入力エラーです**")
 	end
-end
-
-def init
-	card = Card.new
 end

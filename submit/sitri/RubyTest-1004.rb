@@ -1,26 +1,26 @@
-﻿#問1
+﻿# 問1
 
 # 1
 a = (1..100).to_a
 #p a
 
-#2
+# 2
 b = a.collect{|b| b*100}
 #p b
 
-#3
+# 3
 c = a.select{|c| c%3==0}
 #p c
 
-#4
+# 4
 d = a.reverse
 #p d
 
-#5
+# 5
 e = a.inject(:+)
 #p e
 
-#6
+# 6
 def sum_array(a1, a2)
   a1.zip(a2).map{|a,b| a+b}
 end
@@ -28,9 +28,18 @@ end
 #p sum_array((1..100), (2..101))
 
 
-#問2
-#1
+# 問2
+# 1
 str_a = "Ruby it is a test string of study for the array".split(' ')
 #p str_a
 
-#2
+# 2
+str_b = str_a.sort
+#p str_b
+
+# 3
+str_c = str_a.map{|v| v.capitalize}
+#p str_c
+
+# 問3
+

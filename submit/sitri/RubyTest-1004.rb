@@ -41,5 +41,24 @@ str_b = str_a.sort
 str_c = str_a.map{|v| v.capitalize}
 #p str_c
 
-# 問3
 
+# 問3
+# 1
+wday = {
+  sunday: "日曜日",
+  monday: "月曜日",
+  tuseday: "火曜日",
+  wednesday: "水曜日",
+  thursday: "木曜日",
+  friday: "金曜日",
+  saturday: "土曜日"
+}
+#p wday[:sunday]
+
+# 2
+#p wday.length
+
+# 3
+wday.each do |k,v|
+  p "英語[#{k}]は日本語で$#{v}です。"
+end

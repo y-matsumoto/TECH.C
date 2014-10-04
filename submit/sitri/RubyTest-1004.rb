@@ -62,3 +62,21 @@ wday = {
 wday.each do |k,v|
   p "英語[#{k}]は日本語で$#{v}です。"
 end
+
+
+# 問4
+# 1
+def dice
+  rand(6)+1
+end
+p dice
+
+# 2
+def dice10
+  result = Array.new(0)
+  10.times do
+    result<< ( rand(6)+1 )
+  end
+  return result.inject(:+)
+end
+p dice10

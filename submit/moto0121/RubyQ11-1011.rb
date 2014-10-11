@@ -13,3 +13,19 @@ puts "lines=#{lines} words =#{words} chars=#{chars}"
 end
 
 wc(ARGV[0])
+
+
+
+
+
+def tail(gyo,filename)
+	lines = 0
+	file = File.open(filename,"r")
+
+	while line = file.gets
+	lines += 1
+	end
+
+end
+
+tail(ARGV[0].to_i,ARGV[1])

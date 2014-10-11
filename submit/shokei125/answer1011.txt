@@ -1,0 +1,59 @@
+wc.rb
+
+line = 0
+word = 0
+char = 0
+
+f = open("wc.txt")
+
+while tmp = f.gets
+  line += 1 #lineの合計
+  word += tmp.split(" ").size #単語数の合計
+  con = tmp.split(" ")#行の分解
+
+  con.each do |x|
+    ary = Array.new
+    p ary = x.split("").size#単語の分解
+    char += ary.size #文字数の合計
+  end
+
+end
+
+p "line = #{line},word = #{word},char = #{char}"
+
+------------------------------
+
+tail.rb
+
+def numCheck?(num)
+  if num =~ /^[0-9]+$/
+    return true
+  else
+    return false
+  end
+end
+
+f = open('wc.txt')
+line = 0
+while tmp = f.gets
+  line += 1
+end
+
+p "ファイルの末行から何行目を取得するの？"
+p "1から#{line}までの数字を入れてください"
+
+num = 0
+while
+  num = gets.chomp
+  if numCheck?(num)
+    num = num.to_i
+    break
+  else
+    puts "正しい数値を入力してよ！"
+    next
+  end
+end
+
+open('wc.txt') do |f|
+  print "["+f.readlines[line-num].chomp+"]"
+end

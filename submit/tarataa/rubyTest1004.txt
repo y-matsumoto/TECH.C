@@ -1,0 +1,94 @@
+–â1
+1
+
+for i in 1..100
+    puts(i)
+end
+
+------------------------
+2
+
+for i in 1..100
+    puts(i * 100)
+end
+
+------------------------
+3
+
+for i in 1..100
+    if i % 3 == 0 then
+        puts(i)
+    end
+end
+
+------------------------
+4
+
+for i in 1..100
+    puts(101 - i)
+end
+
+------------------------
+5
+
+a = 0
+
+for i in 1..100
+    a += i
+end
+
+print(a)
+
+------------------------
+6
+
+def sum_array(a, b)
+    c = []
+    for i in 0..2
+        c[i] = a[i] + b[i]
+    end
+    puts (c)
+end
+
+sum_array([1, 2, 3],[4, 5, 6])
+
+------------------------
+–â2
+1
+
+a = ["Ruby", "it", "is", "a", "test", "string", "of", "study", "for", "the", "array"]
+
+------------------------
+2
+
+a = ["Ruby", "it", "is", "a", "test", "string", "of", "study", "for", "the", "array"]
+
+p a.sort{|a,b|
+    a.downcase <=> b.downcase
+}
+
+------------------------
+3
+
+a = ["Ruby", "it", "is", "a", "test", "string", "of", "study", "for", "the", "array"]
+
+
+for i in 0..(a.length-1) do
+     p a[i].capitalize
+end
+
+------------------------
+–â3
+1
+
+def wday(i)
+    
+    
+    hash = {"Monday" => "Œ—j“ú",                     "Tuesday" => "‰Î—j“ú", "Wednesday" => "…—j“ú", "Thursday" => "–Ø—j“ú", "Friday" => "‹à—j“ú", "Saturday" =>     "“y—j“ú", "Sunday" => "“ú—j“ú"}
+    
+    print(hash[i])
+end
+a = "Monday"
+wday(a)
+
+

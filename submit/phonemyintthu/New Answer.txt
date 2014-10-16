@@ -1,0 +1,106 @@
+?1
+1.
+
+	a = Array(1..100)
+	a = (a).sort
+	p a
+	
+2.
+
+	a = Array(1..100)
+	a = (a).sort
+	b = a.collect{|i| i * 100 }
+	p b
+	
+3.
+
+	a = Array(1..100)
+	 = (a).sort
+	b = a.collect{|i| i * 100 }
+	c = a.reject{|i| i % 3 != 0 }
+	p c
+	
+4.
+
+	a = Array(1..100)
+	a = (a).sort
+	b = a.collect{|i| i * 100 }
+	c = a.reject{|i| i % 3 != 0 }
+	d = a.reverse
+	p d
+	
+5.
+
+	a = Array(1..100)
+	a = (a).sort
+	b = a.collect{|i| i * 100 }
+	c = a.reject{|i| i % 3 != 0 }
+	a.reverse
+	d = a.inject(0, &:+)
+	p d	
+	
+6.
+
+	array_one = [1,2,3]
+	array_two = [4,5,6]
+	x = 0
+	sum_array = []
+	while x < array_one.length
+	sum_array[x] = array_one[x] + array_two[x]
+  	x += 1
+	end
+	p sum_array
+	
+?2
+1.
+
+	str = "Ruby it is a test string of study for the array"
+	strAry = str.split(" ")
+	p strAry
+	
+2.
+
+	str = "Ruby it is a test string of study for the array"
+	strAry = str.split(//)
+	p strAry
+	
+3.
+
+	str = "Ruby it is a test string of study for the array"
+	strcap = str.split.map(&:capitalize)
+	p strcap
+	
+	
+?3
+
+
+	wday = Hash.new  
+	wday = {"Sunday" => "sunday",
+        "Monday" => "monday",
+        "Thuesday" => "tueday",
+        "Wendsday" => "weday",
+        "Thursday" => "thuday",
+        "Friday" => "friday",
+        "Satuday" => "sartday"
+       }
+	wday.each do |e|
+	ary = e.to_a
+	puts "?#{ary.first}?is#{ary.last}?"
+	
+def dice
+  ary = (1..6).to_a
+  p saiko = ary.sample
+end
+dice
+
+p "10????"
+def dice10
+  ary = (1..6).to_a
+  sum = 0
+  10.times {|x|
+    p x = ary.sample
+    sum += x
+  }
+  p sum
+end
+dice10

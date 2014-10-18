@@ -1,0 +1,8 @@
+ def abc()
+for year in 0 .. 2014
+if year % 400 == 0 || (year % 100 != 0 && year % 4 == 0) then
+puts year
+end
+end
+end
+abc

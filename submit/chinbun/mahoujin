@@ -1,0 +1,46 @@
+class SquareArray
+	attr_reader:square_size	
+	attr_reader:square
+
+def initialize(square_size, init_value)
+	@square_size = square_size
+	@square = Array.new(@square_size, init_value).map{Array.new(@square_size,init_value)}
+	end
+	
+	def show
+		(0..@square_size -1).each do |i|
+			(0..@square_size -1).each do |j|
+				print printf('%3d', @square[j][i])
+				end
+				print "\n"
+				end
+			end
+		end
+class Mahoujin < SquareArray
+	
+	def create
+		x = @square_size -1
+   		 y = @square_size / 2
+
+   		 (1..(@square_size * @square_size)).each do |i|
+			if @square[x][y] == 0
+        		@square[x][y] = i
+    		else
+       		 x-=2
+        	y-=1
+        	@square[x][y] = i
+    	end
+    	x+=1
+    	y+=1
+    	if x ==@square_size
+       		 x = 0
+    	elsif y ==@square_size
+       		 y = 0
+    		end
+   		 end
+    end
+end
+
+mahoujin = Mahoujin.new(3, 0)
+mahoujin.create
+mahoujin.show

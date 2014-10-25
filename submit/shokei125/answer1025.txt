@@ -6,12 +6,12 @@ end
 
 #電話番号チェック
 def tel?(tel)
-  return true if tel =~ /^0\d{2,3}-\d{3,4}-\d{3,4} || ^0{9,10}/
+  return true if tel =~ /^0\d{2,3}-\d{3,4}-\d{3,4}/ || tel =~ /^0{9,10}/
   return false
 end
 
 #桁数チェック
-def ketaT?(tel)
+def keta?(tel)
   tel = tel.gsub("-","")
   return true if tel.size == 10 || tel.size == 11
   return false
@@ -19,16 +19,10 @@ end
 
 #郵便番号チェック
 def post?(post)
-  return true if post =~ /\d{3}-\d{4} || \d{7}/
+  return true if post =~ /\d{3}-\d{4}/  || post =~ /\d{7}/
   return false
 end
 
-#桁数チェック
-def ketaP?(post)
-  post = post.gsub("-","")
-  return true if post.size == 7
-  return false
-end
 
 #メールアドチェック
 def mail?(mail)
@@ -55,7 +49,7 @@ end
 
 print "電話番号:"
 str = gets.chomp
-if tel?(str) && ketaT?(str)
+if tel?(str) && keta?(str)
   user.store("tel",str)
 elsif str.empty?
   reera += "tel,"
@@ -65,7 +59,7 @@ end
 
 print "郵便番号:"
 str = gets.chomp
-if post?(str) && ketaP?(str)
+if post?(str) 
   user.store("post",str)
 elsif str.empty?
   reera += "post,"

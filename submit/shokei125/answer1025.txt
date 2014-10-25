@@ -1,0 +1,93 @@
+#ユーザー名チェック
+def name?(name)
+  return true if name =~ /^@+[A-Z]{3,}+$/
+  return false
+end
+
+#電話番号チェック
+def tel?(tel)
+  return true if tel =~ /^0\d{2,3}-\d{3,4}-\d{3,4}/
+  return false
+end
+
+#桁数チェック
+def keta?(tel)
+  tel = tel.gsub("-","")
+  return true if tel.size == 10 || tel.size == 11
+  return false
+end
+
+#郵便番号チェック
+def post?(post)
+  return true if post =~ /\d{3}-\d{4}/
+  return false
+end
+
+#桁数チェック
+def keta?(post)
+  post = post.gsub("-","")
+  return true if post.size == 7
+  return false
+end
+
+#メールアドチェック
+def mail?(mail)
+  return true if mail =~ /^[\w\d_-]+@+([\w\d_-]+\.[\w\d_-])+/
+
+  return false
+end
+
+user = Hash.new
+inera = "invalid:"
+reera = "required："
+tmp = inera.size
+rtmp = reera.size
+
+print "ユーザー名:"
+str = gets.chomp
+if name?(str)
+  user.store("name",str)
+elsif str.empty?
+  reera += "name,"
+else
+  inera += "name,"
+end
+
+print "電話番号:"
+str = gets.chomp
+if tel?(str)
+  user.store("tel",str)
+elsif str.empty?
+  reera += "tel,"
+else
+  inera += "tel,"
+end
+
+print "郵便番号:"
+str = gets.chomp
+if post?(str)
+  user.store("post",str)
+elsif str.empty?
+  reera += "post,"
+else
+  inera += "post,"
+end
+
+print "Email:"
+str = gets.chomp
+if mail?(str)
+  user.store("email",str)
+elsif str.empty?
+  reera += "email,"
+else
+  inera += "email"
+end
+
+p user
+
+if inera.size > tmp
+  p inera
+end
+if reera.size > rtmp
+  p reera
+end

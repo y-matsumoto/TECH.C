@@ -1,0 +1,79 @@
+問1.実行結果を記載せよ　
+　※問題を解いたら実行し結果を確認すること
+
+-------------------------------------　
+メソッドはコアリファレンスサイトより調べること
+http://ruby-doc.com/
+-------------------------------------　
+
+(1)
+mark = '*'
+5.downto(1) {|i| print((mark * i) + "\n") }
+
+<ヒント>
+downtoメソッド参考
+http://ruby-doc.org/core-2.0/Integer.html
+
+(2)
+ary = [1, 2, 3, 4, 5]
+ary.reverse!
+p ary[1...-1]
+
+<ヒント>
+reverseメソッド参考
+http://www.ruby-doc.org/core-2.0/Array.html
+
+(3)
+ary = (-15..-10).to_a
+p ary.select {|i| i % 3 == 0 }
+
+<ヒント>
+selectメソッド参考
+http://www.ruby-doc.org/core-2.0/Array.html
+
+(4)
+o1 = Object.new
+o2 = Object.new
+ 
+if o1.equal?(o2)
+  puts("o1")
+else
+  puts("o2")
+end
+
+(5)
+def test(count=9)
+  count -= 2
+  container = [0, 1]
+  until 0 >= count
+    container += [(container[-2] + container[-1])]
+    count -= 1
+  end
+  return container
+end
+p test
+
+<ヒント>
+配列にマイナスの添字を指定可能　
+a = [0,1,2,3,4,5]
+p a[-1]      #=>5
+p a[-3]      #=>3
+
+問2.下記コードの実行結果となるようにHammerクラスの処理を記載せよ
+
+class Tool
+  def use
+    puts "color:#{@color} tool:#{self.class.to_s}"
+  end
+ 
+  def initialize(color)
+    @color = color
+  end
+end
+Hammer.new("red").use
+
+実行結果：
+----------------------------------
+color:red tool:Hammer
+ハンマーを使う
+----------------------------------

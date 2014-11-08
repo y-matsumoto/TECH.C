@@ -1,44 +1,33 @@
-class Deck << Array
-  class << self
-    def initialize(length = 9)
-      self
+class Game
+
+end
+
+class Deck 
+  #attr :tmp # 外からRのみ。attr_readerと同じ。
+  attr_accessor :deck, :deckLength #外からRW両方できる
+  attr_writer :willShuffle #外からはWのみ
+  
+  def initialize(length, willShuffle=false)
+    @length = deckLength
+    @deck = Array.new(@length){ |key| key+1 }
+    @willShuffle = willShuffle
+    if true==@willShuffle then
+      @deck.shuffle!
     end
+    
   end
   
 end
 
 class Hand
-
-  @cardList # array
-  
-  def initialize() # when new, called
-    @cardList = Array.new(3){-1}
-  
+  attr_accessor :length
+  def initialize(length=0)
+    @length = length
   end
-  def getCardList()
-    return @cardList
-  end
-  def setCardList()
-    return false
-  end
-
 end
 
-def game()
 
-end
+#3つの異なる数字を選ぶ
+tmpDeck = Deck.new(10, true)
+hand = tmpDeck.deck.shift(3)
 
-hand01 = Hand.new()
-p hand01.getCardList()
-
-# init game
-
-# game start
-# build cardset
-
-# while true
-  # shoot numbers
-
-  # if complete, game end
-
-#game end

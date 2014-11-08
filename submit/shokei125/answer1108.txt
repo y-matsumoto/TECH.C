@@ -32,8 +32,8 @@ end
 
 class Hammer < Tool
   def use
-  super
-  puts "ハンマーを使う"
+    super
+    puts "ﾆ地ﾆ停愴筑ﾂー窶堙ｰﾅｽg窶堋､"
   end
 end
 Hammer.new("red").use

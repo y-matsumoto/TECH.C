@@ -1,11 +1,11 @@
 # Q.1
 
 ## 1. downto
-*****
-****
-***
-**
-*
+> *****
+> ****
+> ***
+> **
+> *
 
 ## 2. Array.reverse!
 [4, 3, 2]
@@ -20,21 +20,21 @@
 [0, 1, 1, 2, 3, 5, 8, 13, 21]
 
 # Q.2
-> class Tool
->   def use
->     puts "color:#{@color} tool:#{self.class.to_s}"
->   end
->  
->   def initialize(color)
->     @color = color
->   end
-> end
-> 
-> class Hammer < Tool
->   def use
->     p super
->     p "ハンマーを使う"
->   end
-> end
-> 
-> Hammer.new("red").use
+class Tool
+  def use
+    puts "color:#{@color} tool:#{self.class.to_s}"
+  end
+ 
+  def initialize(color)
+    @color = color
+  end
+end
+
+class Hammer < Tool
+  def use
+    p super
+    p "ハンマーを使う"
+  end
+end
+
+Hammer.new("red").use

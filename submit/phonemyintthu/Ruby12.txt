@@ -1,0 +1,32 @@
+module Search
+  def search(keyWord)
+    url = URI.escape("http://www.google.com/search?q=#{keyWord}")
+  end
+end
+
+class Book
+  include Search
+  def initialize(book)
+    @book = book
+  end
+  attr_accessor :book
+  def google
+    search(@book)
+  end
+end
+
+class City
+  include Search
+  def initialize(city)
+    @city = city
+  end
+  attr_accessor :city
+  def google
+      search(@city)
+    end
+end
+
+book = Book.new("onepiece")
+puts book.google
+city = City.new("Tokyo")
+puts city.google

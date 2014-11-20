@@ -1,0 +1,33 @@
+1.
+
+
+*****
+****
+***
+**
+*
+
+[4, 3, 2]
+
+[-15, -12]
+
+o2
+
+[0, 1, 1, 2, 3, 5, 8, 13, 21]
+
+2.
+
+class Tool
+  def use
+    puts "color:#{@color} tool:#{self.class.to_s}"
+  end
+ 
+  def initialize(color)
+    @color = color
+  end
+end
+
+class Hammer < Tool
+  
+end
+Hammer.new("red").use

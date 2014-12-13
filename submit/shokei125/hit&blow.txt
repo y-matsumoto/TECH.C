@@ -1,0 +1,131 @@
+#チェック用
+class Check
+    attr_accessor :number, :num_int
+    def initialize(number,num_int = [])
+        @number = number
+        @num_int = num_int
+    end
+    
+    #数字の分解
+    def num_change
+        num_str = @number.to_s.split("")
+        for i in 0..num_str.size-1
+            @num_int[i] = num_str[i].to_i
+        end
+    end
+    
+    #数字の重複と範囲のチェック
+    def num_check?
+        cont = 2
+
+        if @number <= 100 || @number >= 999
+            puts "100~999 number please"
+            cont -=1
+        end
+        
+        if @num_int[0] == @num_int[1] || @num_int[1] == @num_int[2] || @num_int[0] == @num_int[2]
+            puts "different number please"
+            cont -=1
+        end
+        
+        cont
+    end
+    
+    #数字の配列のゲット
+    def num_get
+       @num_int 
+    end
+    
+end
+
+#ゲームの判定
+class Game
+    attr_accessor :play,:com
+    def initialize(play,com)
+        @play = play
+        @com = com
+    end
+    
+    
+    #blow
+    def blow_check
+        cont = 0
+        for i in 0..@play.size-1
+            for j in 0..@play.size-1
+                cont += 1 if @play[i] == @com[j]
+            end
+        end
+        cont
+    end
+    
+    #hit
+    def hit_check
+        cont = 0
+        for i in 0..@play.size-1
+            cont += 1 if @play[i] == @com[i]
+        end
+        cont
+    end
+    
+    def loop_check?(h)
+        true if h != 3
+    end
+    
+    #display
+    def display(h,b)
+        if h == 3
+            puts "you are the winner!!!","answer is #{@com}"
+        elsif
+            b -= h
+            puts "#{b}Blow--#{h}Hit","*****************"
+        end
+    end
+end
+
+#本体
+puts "100~999 number please!!/(close the game by enter 0)"
+
+#答えの生成
+begin comer = rand(899)+100
+    com = Check.new(comer)
+    com.num_change
+end while com.num_check? != 2
+
+#ユーザの入力
+cont = 0 #回答回数用
+player = 0 #初期化
+
+begin
+    begin
+         while true
+            player = gets.chomp
+            if player =~ /^[0-9]/
+               break
+              else
+                 puts "number please!!"
+            end
+        end
+        player = player.to_i
+        #0でゲーム終了
+        break if player == 0 
+        
+       play = Check.new(player)
+       play.num_change
+    end while play.num_check? != 2
+    
+    #0で終了
+    break if player == 0 
+    
+    game = Game.new(play.num_get,com.num_get)
+    
+    b = game.blow_check
+    h = game.hit_check
+    cont += 1
+    
+    #判定結果の表示
+    game.display(h,b)
+    p "#{cont}answer"
+end while game.loop_check?(h)
+
+
+

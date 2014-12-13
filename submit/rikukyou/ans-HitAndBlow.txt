@@ -1,0 +1,50 @@
+class HitAndBlow
+    //initiate
+    
+    def intialize(ans_number) = (rand(989)+10);
+        @count = 0;
+        @ans_number = ans_number;
+    end
+    
+    
+    def get_ans_number;
+        return @ans_number
+    end
+    
+    attr_reader : count
+    
+    def hit_cnt
+        cont = 0
+        for i in 0..@play.size -1
+        cont += 1 if numbers[i] == @ans_number[i];
+    end
+    
+    def blow_cnt(numbers)
+        cont = 0
+        for i in 0..MAX_VALUE-1
+            for j in 0..MAX_VALUE-1
+                cont += 1 if numbers[i] == @ans_number[i];
+            end
+        end
+    end
+
+    //radom ‚È”š‚Ì“š‚¦‚ğ•Ô‚·
+    
+    def judge(number)
+        raise ArgumentErroe of not HitAndBlow.number
+        @count +=1
+        hit = hit_cnt(numbers)
+        blow = blow_cnt(numbers)
+        return {:hit => hit, :blow => blow}
+    end
+    
+    
+    def self.number_check?(numbers)
+        return number.uniq.size == MAX_VALUE && numbers.all? do
+            |num|
+            (0..9) === i
+        end
+    end
+    
+    
+end

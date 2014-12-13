@@ -1,0 +1,28 @@
+問.下記、検索urlを生成するSearchモジュール、Bookクラス、Cityクラスを作成せよ
+
+Searchモジュールのgoogleメソッド：
+　「http://www.google.co.jp/search?q=[検索文字]」を返す
+
+クライアント実行処理：
+　book = Book.new("たのしいRuby")
+　puts book.google
+　city = City.new("新宿区")
+　puts city.google
+
+実行結果：
+　http://www.google.co.jp/search?q=%E3%81%9F%E3%81%AE%E3%81%97%E3%81%84%20Ruby
+　http://www.google.co.jp/search?q=%E6%96%B0%E5%AE%BF%E5%8C%BA
+
+
+◇ヒント（エンコード対応）
+　require 'uri'
+　p URI.escape('http://www.google.co.jp/search?q=テスト')
+　#=> "http://www.google.co.jp/search?q=%E3%83%86%E3%82%B9%E3%83%88%0D%0A"
+
+------------------------------------------------
+【機能】
+対象のURLを返す
+
+【コード条件】
+モジュールを作成しmix-inすること
+------------------------------------------------

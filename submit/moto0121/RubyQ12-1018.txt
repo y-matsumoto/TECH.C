@@ -1,0 +1,21 @@
+module Search
+  def google(str)
+    require 'uri'
+    URI.escape('http://www.google.co.jp/search?q='+str)
+
+  end
+end
+
+class Book
+  include Search
+end
+
+class City
+  include Search
+end
+
+book = Book.new()
+puts book.google('ÇΩÇÃÇµÇ¢ruby')
+
+city = City.new()
+puts city.google('êVèhãÊ')

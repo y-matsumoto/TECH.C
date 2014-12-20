@@ -1,0 +1,120 @@
+﻿問1.
+
+1.1〜100までの整数が昇順に並ぶ配列aを作成せよ
+a = (1..100).to_a
+
+2.[1]の配列の各要素を100倍した、新しい配列bを作成せよ
+a = (1..100).to_a
+b = a.collect{|i| i * 100}
+
+3.[1]の配列の各要素から3の倍数のみ取得した、新しい配列cを作成せよ
+a = (1..100).to_a
+c = a.select{|item| item % 3 == 0}
+
+4.[1]の配列を逆順に並び替えせよ
+a = (1..100).to_a
+c = a.reverse
+
+5.[1]の配列に含まれる整数の和を求めよ
+sum = 0
+  (1..100).each do |i|
+  sum + = i
+end
+sum
+
+6.数値からなる配列array1と配列array2のそれらのここの要素を足し合わせた結果を配列で返すsum_arrayメソッド
+　を作成せよ
+
+実行例）
+p sum_array([1,2,3],[4,5,6]) # 出力: [5,7,9]
+
+array_1 = [1, 2, 3]
+array_2 = [4, 5, 6]
+x = 0
+sum_array = []
+while x < array_1.length
+sum_array[x] = array_1[x] + array_2[x]
+x += 1
+end
+p sum_array
+
+
+問2.
+
+1."Ruby it is a test string of study for the array"
+　という文字列の各単語を要素とする配列を作成せよ
+
+str = "Ruby it is a test string of study for the array"
+strAry = str.split()
+
+2.[1]の配列をアルファベット順にソートせよ
+
+str = "Ruby it is a test string of study for the array"
+strAry = str.split()
+p strAry.sort{|a,b|
+  a <=> b
+}
+
+3.[1]の配列に含まれる文字列を全て単語の先頭を大文字にせよ
+
+str = "Ruby it is a test string of study for the array"
+strAry = str.split.map(&:capitalize)
+
+問3.
+
+1.曜日を表す英語と日本語の対応を表すハッシュwdayを定義せよ
+
+実行例)
+p wday[:sunday] # 出力: "日曜日"
+
+wday = {:sunday => "日曜日", :monday => "月曜日", :tuesday => "火曜日", :wednesday => "水曜日", :thursday => "木曜日", :friday => "金曜日", :suturday => "土曜日" }
+p wday
+
+2.[1]のデータ数の7を取得するコードを記載せよ
+
+wday = {:sunday => "日曜日", :monday => "月曜日", :tuesday => "火曜日", :wednesday => "水曜日", :thursday => "木曜日", :friday => "金曜日", :suturday => "土曜日" }
+p wday.size
+
+3.eachメソッドを使用し[1]のハッシュから下記結果を取得せよ
+
+英語[sunday]は日本語で日曜日です。
+〜(一週間分)
+
+wday = {:sunday => "日曜日", :monday => "月曜日", :tuesday => "火曜日", :wednesday => "水曜日", :thursday => "木曜日", :friday => "金曜日", :suturday => "土曜日" }
+wday.each do |key, value|
+  puts "「#{key}」は#{value}のことです。"
+end
+
+問4.
+
+1.1個のさいころを振って出た目を返すメソッドdiceを作成せよ
+
+def dice
+ return rand(6) + 1
+ end
+
+ def dice1
+ ret = 0
+ 1.times do
+ ret += dice
+ end
+ ret
+ end 
+ p dice1
+
+2.10個のさいころを振って出た目の合計値を返すメソッドdice10を作成せよ
+
+def dice
+ return rand(6) + 1
+ end
+
+ def dice10
+ ret = 0
+ 10.times do
+ ret += dice
+ end
+ ret
+ end 
+ p dice10
+
+

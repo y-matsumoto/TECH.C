@@ -1,0 +1,83 @@
+# encoding utf-8
+require 'open-uri'
+require 'nokogiri'
+require 'mechanize'
+
+
+TITLE  = 0
+URL    = 1
+MEDIA  = 2
+TIME   = 3
+DATES  = 4
+
+class DB
+  
+  require 'sqlite3'
+  
+  def initialize
+    @dbfile = 'dbfile'
+  end
+  
+  
+  def tableCreate
+  	SQLite3::Database.new(@dbfile) do |db|
+      db.execute <<-SQL
+        CREATE TABLE IF NOT EXISTS news
+        (id INTEGER PRIMARY KEY AUTOINCREMENT,title TEXT,url TEXT,MEDIA TEXT,time TEXT,dates TEXT)
+      SQL
+    end
+  end
+
+
+  def tableInsert(ary)
+    SQLite3::Database.open(@dbfile) do |db|
+      db.execute "BEGIN TRANSACTION"
+      db.execute"INSERT INTO news(title,url,MEDIA,time,dates) VALUES(?,?,?,?,?)",
+      	[ary[TITLE],ary[URL],ary[MEDIA],ary[TIME],Time.now.strftime("%Y-%m-%d %H:%M:%S")]
+      db.execute "COMMIT TRANSACTION"
+    end
+  end
+
+
+  def show
+    SQLite3::Database.open(@dbfile) do |db|
+      db.execute("SELECT * FROM news") do |row|
+        puts "ID [#{row[0]}]"
+        puts "タイトル　[#{row[1]}]"
+        puts "URL [#{row[2]}]"
+        puts "提供媒体 [#{row[3]}]"
+        puts "表示時間 [#{row[4]}]"
+        puts "取得日時 [#{row[5]}]"
+      end
+    end
+  end
+
+end
+
+page = Nokogiri::HTML(open("http://news.yahoo.co.jp/flash"))
+
+test = DB.new
+test.tableCreate
+
+ary = Array.new(25){ Array.new() }
+
+num = 0
+page.xpath('//div[@class = "articleList lastCon"]/ul/li/p/a').each do |data|
+  ary[num][URL] = data[:href]
+  ary[num][TITLE] = data.text
+  num += 1
+end
+
+num = 0
+page.xpath('//div[@class = "articleList lastCon"]/ul/li/p[@class = "source"]').each do |data|
+  tmp = data.text.split(" ")
+  ary[num][MEDIA] = tmp[0]
+  ary[num][TIME] = tmp[1]
+  num += 1
+end
+
+for i in 0...ary.size do
+  test.tableInsert(ary[i])
+end
+
+test.show

@@ -1,0 +1,15 @@
+SQLite3::Database.open "mydb" do |db|
+  db.execute "CREATE TABLE ADDRBOOK (name TEXT, address TEXT)"
+end
+
+SQLite3::Database.open "mydb.db"
+  db.execute "INSERT INTO ADDRBOOK VALUES (?, ?)", [col1, col2]
+end
+
+SQLite3::Database.open "mydb.db" do db|
+  db.execute ("SELECT * FROM ADDRBOOK") do |rows|
+    p rows
+  end
+end
+
+CREATE TABLE IF EXISTS zips (code TEXT, pref TEXT, city TEXT, addr TEXT, alladdr TEXT);

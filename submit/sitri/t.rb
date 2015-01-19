@@ -1,1 +1,0 @@
-p RUBY_VERSION

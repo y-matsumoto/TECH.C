@@ -1,0 +1,35 @@
+require 'uri'
+
+module Search
+  def change(keyWord)
+    url = URI.escape("http://www.google.co.jp/search?q=#{keyWord}")
+  end
+end
+
+class Book
+  include Search
+  def initialize(book)
+    @book = book
+  end
+  attr_accessor :book
+  def google
+    change(@book)
+  end
+end
+
+class City
+  include Search
+  def initialize(city)
+    @city = city
+  end
+  attr_accessor :city
+  def google
+      change(@city)
+    end
+end
+
+book = Book.new("ÇΩÇÃÇµÇ¢Ruby")
+puts book.google
+city = City.new("êVèhãÊ")
+puts city.google
+

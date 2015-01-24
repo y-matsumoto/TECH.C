@@ -1,0 +1,22 @@
+filename = ARGV[0]
+
+open(filename){|f|
+  l_num = w_num = c_num = 0
+
+  while line = f.gets
+    line.chomp!
+    l_num += 1
+    
+    # splite(/\s+/) で単語に分割した後に
+    # reject{|w| w.empty?} で空白の文字列を除去する。
+    # (行頭に空白がある場合は
+    #  split の結果に空白の文字列が含まれるため)
+    words = line.split(/\s+/).reject{|w| w.empty?}
+    w_num += words.size
+    c_num += line.size
+  end
+
+  puts "line_num: #{l_num}"
+  puts "word_num: #{w_num}"
+  puts "char_num: #{c_num}"
+}

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
  def abc()
 for year in 0 .. 2014
 if year % 400 == 0 || (year % 100 != 0 && year % 4 == 0) then
@@ -6,3 +7,57 @@ end
 end
 end
 abc
+=======
+﻿num = [*2..100]
+pn = []
+for i in 0..3
+    tmp = num.shift 
+    num.delete_if{|n| n % tmp == 0 }
+    pn << tmp
+end
+pn << num
+puts pn
+
+
+count = 0
+for i in 2..100
+    for j in 2..i
+        if i % j == 0 then
+            count += 1
+        end
+    end 
+    if count == 1 then
+        puts i
+    end
+    count = 0
+end
+
+class Leapyear
+    def lycal
+        for y in 0..2004
+            if y % 4 == 0 && !(y % 100 == 0) then
+		        puts y
+	        else if y % 4 == 0 && y % 100 == 0 && y % 400 == 0 then
+		        puts y
+		         end
+            end
+        end
+    end
+end
+
+lp = Leapyear.new
+lp.lycal()
+
+class Leapyear
+    def lycal
+        for y in 0..2004
+            if y % 4 == 0 && !(y % 100 == 0) || y % 400 == 0 then
+    	        puts y
+            end
+        end
+    end
+end
+
+lp = Leapyear.new
+lp.lycal()
+>>>>>>> cb46083d09dff1e6fac5d91c759dbb9ebd0f02dd

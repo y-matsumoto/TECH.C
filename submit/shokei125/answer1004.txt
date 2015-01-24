@@ -1,0 +1,47 @@
+def quickSort(ary, left, right)
+  return ary if left >= right
+
+  pivot = ary[((left + right).to_f/2.to_f).ceil]
+  i = left
+  j = right
+
+  while true
+    i += 1 while ary[i] < pivot
+    j -= 1 while ary[j] > pivot
+
+    break if (i >= j)
+    tmp = ary[i]
+    ary[i]= ary[j]
+    ary[j] = tmp
+    i += 1
+    j -= 1
+  end
+  #再帰
+  quickSort(ary, left, i-1)
+  quickSort(ary, i, right)
+  ary
+end
+
+num = Array.new
+
+#ユーザー入力
+while true
+  str = gets.chomp
+  #ｑで入力終了と文字チェック
+  break if str == "q" || str == "Q"
+  if str =~ /^[0-9]+$/
+    num.push(str)
+  else
+    puts "数値を入力してよ！"
+  end
+end
+
+num.collect! do |x|
+  x.to_i
+end
+
+p num
+
+quickSort(num,0,num.size-1)
+
+p num

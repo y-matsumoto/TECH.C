@@ -1,0 +1,64 @@
+–â1.
+p a = (1..100).to_a.sort
+
+p b = a.collect {|x| x * 100}
+
+p c = a.select {|x| x%3 == 0}
+
+p a.reverse
+
+sum = 0
+a.each {|x| sum += x }
+p sum
+
+def sum_array(ary1,ary2)
+  i = 0
+  sum = Array.new(3)
+  while i < ary1.size
+    sum[i] = ary1[i] + ary2[i]
+    i += 1
+  end
+  sum
+end
+p sum_array([1,2,3],[4,5,6])
+
+–â2.
+string = "Ruby it is a test string of study for the array"
+p a = string.split(" ").to_a
+
+b = a
+p b.sort {|x,y| x.downcase <=> y.downcase}
+
+c = a
+p c.each {|x| x.capitalize! }
+
+–â3.
+wday = {"monday"=>"Œ—j“ú","tuesday"=>"‰Î—j“ú","wednesday"=>"…—j“ú",
+        "thursday"=>"–Ø—j“ú","friday"=>"‹à—j“ú", "saturday"=>"“y—j“ú",
+"sunday"=>"“ú—j“ú"}
+p wday['sunday']
+  
+p wday.length
+
+wday.each {|key,value| 
+  p "‰pŒê[#{key}]‚Í“ú–{Œê‚Å#{value}‚Å‚·B"
+}
+
+–â4.
+def dice
+  ary = (1..6).to_a
+  p saiko = ary.sample
+end
+dice
+
+p "10ŒÂ‚Ìê‡"
+def dice10
+  ary = (1..6).to_a
+  sum = 0
+  10.times {|x|
+    p x = ary.sample
+    sum += x
+  }
+  p sum
+end
+dice10

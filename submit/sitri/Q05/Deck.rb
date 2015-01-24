@@ -1,9 +1,13 @@
+require './TrumpCard.rb'
+
 class Deck 
-  attr_accessor :deck, :length
+  attr :deck, :length
     
   # 初期化
-  def initialize(jokerNum = 2)
-    @deck = Array.new(52+jokerNum){|i| i }
+  def initialize(jokerNum = 1)
+    @deck = Array.new(52+jokerNum){|i|
+      TrumpCard.new(i)
+    }
   end
   
   # デッキシャッフル

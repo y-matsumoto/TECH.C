@@ -31,9 +31,15 @@ class Tool
 end
 
 class Hammer < Tool
+<<<<<<< HEAD
   def use
     super
     puts "ƒnƒ“ƒ}[‚ðŽg‚¤"
   end
 end
 Hammer.new("red").use
+=======
+  
+end
+Hammer.new("red").use
+>>>>>>> 85c265f41dd6838200a58cbc30a6cf43ae44fd72

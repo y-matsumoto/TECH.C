@@ -1,10 +1,16 @@
+require './TrumpCard.rb'
+
 class Hand
-  include Enumerable
-  attr_accessor :length, :hand
+  attr :length, :hand
+  
   # 初期化
   # @param 手札の枚数
   def initialize(length=0)
     @length = length
-    @hand = Array.new(@length){ |i| i }
+    @hand = Array.new(@length){ |i|
+      TrumpCard.new(i)
+    }
   end
+  
+  
 end

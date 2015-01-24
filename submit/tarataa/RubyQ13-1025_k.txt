@@ -1,0 +1,34 @@
+def username(user)
+  if/^[^@]/ =~ user then
+    puts "初めに「@」をいれてください"
+  elsif /^[^@ A-Z]/ !~ user then
+    puts "アルファベットのみ"
+  elsif /[a-z]/ =~ user then
+    puts "ユーザー名に小文字があり"
+  elsif /^@[A-Z]{3,}/ =~ user then
+    puts user
+  else
+    puts "文字数が足りません"
+  end
+end
+
+
+def tel(namber)
+  if /^[^0]/ =~ namber then
+    puts "最初は0"
+  elsif /[\d]/ =~ namber then
+    puts "数字のみ"
+  else
+    puts namber
+  end
+end
+
+
+
+
+
+u = "@ABC"
+d = "0123456789"
+
+username(u)
+tel(d)

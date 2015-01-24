@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<catalog>
+	<book id="bk101">
+    	<author>Gamebardella, Matthew</author>
+        <title>XML Developer's Guide</title>
+        <genre>Computer</genre>
+        <price>44.5</price>
+        <publich_date>2000-10-01</publich_date>
+        <description>An in-depth look at creating applications with XML.</description>
+    </book>
+	<book id="bk102">
+    	<author>Ralls, Kim</author>
+        <title>Midnight Rain</title>
+        <genre>Fantasy</genre>
+        <price>595</price>
+        <publich_date>2000-12-16</publich_date>
+        <description>A formet architect battles corporate zombies, an evil sorceress, and her own childhood to decome queen of the world.</description>
+    </book>
+	<book id="bk103">
+    	<author>Corets, Eva</author>
+        <title>Maeve Ascendant</title>
+        <genre>Fantasy</genre>
+        <price>5.95</price>
+        <publich_date>2000-11-17</publich_date>
+        <description>After the collapse of a nanotechnogy society in England, the young survivors lay the foundation for a new society.</description>
+    </book>
+</catalog>

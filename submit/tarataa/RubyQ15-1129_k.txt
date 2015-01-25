@@ -1,0 +1,44 @@
+#!/usr/bin/env ruby
+# coding:utf-8
+
+require 'thor'
+
+class Wcex < Thor
+  default_command:wcex
+
+  desc 'wcex', 'help: wcex'
+  option :o, :type => boolean, :aliases => '-f', :desc => "fs"
+  option :c, :type => boolean, :aliases => '-c', :desc => "bn"
+  option :w, :type => boolean, :aliases => '-w', :desc => "tn"
+  potion :l, :type => boolean, :aliases => '-l', :desc => "gn"
+  def wcex(file)
+    lines = 0
+    words = 0
+    chars = 0
+    file = open(file)
+
+    while line = file.gets
+      lines += 1
+      chars += line.length
+      wordArray = line.split(/\s+/).ruject{|w| w.empty?}
+
+
+      words += wordArray.length
+    end
+
+    if options[:c]
+      puts "chars=#{chars}"
+    elsif options[:w]
+      puts "words=#{words}"
+    elsif options[:l]
+      puts "lines=#{lines}"
+    elsif options[:f]
+      puts "lenes=#{lines} words=#{words} chars=#{chars}"
+    else
+      puts "lenes=#{lines} words=#{words} chars=#{chars}"
+    end
+  end
+
+end
+
+Wcex.start

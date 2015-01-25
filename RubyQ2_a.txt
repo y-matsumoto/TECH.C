@@ -1,0 +1,38 @@
+Ruby問題
+
+1.1〜100までの間で素数を表示させよ
+　※メソッドを作成しコールする事
+
+	def judgment(i)
+		array=(2..i).to_a
+			(2..Math::sqrt(i)).each do |i|
+		array.delete_if {|a|a % i == 0 && a!=i}
+		end
+	  array
+	end
+
+	puts judgment(100)
+
+2.0年〜2014年までの閏年を全て表示させよ
+　※別クラス内にメソッドを作成しコールする事
+
+	class Year
+		def urudosi(i)
+		  if i % 400 == 0 then
+			puts i
+		  elsif i % 100 == 0 then
+		  elsif i % 4 == 0 then
+			puts i
+			end
+		end
+	end
+
+	uru = Year.new
+		for j in 0..2014
+			uru.urudosi(j)
+	end
+
+閏年条件
+•4の倍数であれば閏年
+•ただし、100の倍数でもある場合、
+•400の倍数でもあるならば閏年

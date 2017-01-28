@@ -1,0 +1,33 @@
+﻿陳文
+﻿1〜100までの間で素数を表示させよ
+
+def eratosthenes_sieve(limit, &block)
+  return enum_for(__method__, limit) unless block_given?
+  primes = [2]
+  nums = (primes.last..limit).to_a
+  loop do
+    nums.delete_if{|x| x % primes.last == 0 }
+    break if nums.empty?
+    break if nums.last < primes.last ** 2
+    yield(nums.first)
+    primes << nums.first
+  end
+  nums.each(&block)
+end
+
+puts eratosthenes_sieve(100).to_a.join(' ')
+
+
+2.0年〜2014年までの閏年を全て表示させよ
+
+def isLeapYear(year) 
+  return false if year < 4
+
+  year % 400 == 0 || (year % 100 != 0 && year % 4 == 0) 
+end
+
+def countLeapYear(fromYear, toYear) 
+  (fromYear..toYear).count{|i| isLeapYear i}
+end
+
+puts countLeapYear 1, 2014

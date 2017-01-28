@@ -1,0 +1,45 @@
+puts "\nA 1-1"
+for num in 1..5 do
+  puts "Hello World!"
+end
+
+puts "\nA 1-2"
+5.times{
+     puts "Hello World!"
+}
+
+puts "\nA 2-1"
+for i in 1..9 do
+    for j in 1..9 do
+        printf("%02d ", i*j)
+    end
+    print "\n"
+end
+
+puts "\nA 2-2"
+(1..9).each { |i|
+    (1..9).each { |j|
+        printf("%02d ", i*j)
+    }
+    print "\n"
+}
+
+puts "\nA 3-1"
+(1..100).each { |i|
+    b = true
+    
+    if i % 3 == 0 then
+        print("Fizz")
+        b = false
+    end
+    
+    if i % 5 == 0 then
+        print("Buzz")
+        b = false
+    end
+    
+    print(i) if b
+    
+    puts
+}
+        
